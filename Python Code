@@ -1,0 +1,60 @@
+import pandas as pd
+import numpy as np
+
+# Load dataset
+df = pd.read_csv(r"C:\Users\Favour Ogundipe\OneDrive\Documents\Case Study\Retail Case.csv")
+
+df = df.rename(columns={
+    "lag_price": "Lag Price",
+    "Yea": "Year",
+    "Product ID": "ProductID",
+    "comp_1": "Competitor 1", 
+    "comp_2": "Competitor 2", 
+    "comp_3": "Competitor 3"
+})
+
+# Check for missing values
+missing_values = df.isnull().sum()
+print("Missing values in each column:\n", missing_values)
+
+# Check for duplicate rows
+duplicate_count = df.duplicated().sum()
+print("\nNumber of duplicate rows:", duplicate_count)
+
+# Convert dates
+df['Month-Year'] = pd.to_datetime(df['Month-Year'], format="%d/%m/%Y", errors='coerce')
+df['Month'] = df['Month-Year'].dt.month
+df['Yea'] = df['Month-Year'].dt.year
+
+#Feature engineering
+df['Revenue'] = df['Quantity'] * df['Unit Price'] 
+df['Profit'] = df['Total Price'] - df['Freight Price'] 
+df['Discount'] = (df['Lag Price'] - df['Unit Price']) / df['Lag Price']
+df['Discount'] = df['Discount'].replace([np.inf, -np.inf], 0).fillna(0)
+
+#Competitor price averages
+df['Avg Comp Price'] = df[['Competitor 1','Competitor 2','Competitor 3']].mean(axis=1)
+
+#Competitor price difference
+df['Price vs Comp'] = df['Unit Price'] - df['Avg Comp Price']
+
+#Logistics efficiency
+df['Freight Ratio'] = df['Freight Price'] / df['Total Price']
+
+#Categorize by demand level
+df['Demand Level'] = pd.qcut(df['Quantity'], q=3, labels=['Low','Medium','High'])
+
+# Standardize Product Category
+df['Product Category'] = df['Product Category'].replace({'bed_bath_table': 'Bed Bath Table', 'garden_tools': 'Garden Tools', 'consoles_games': 'Consoles Games', 'health_beauty': 'Health Beauty', 'cool_stuff':'Cool Stuff', 'perfumery': 'Perfumery', 'computer_accessories':'Computer Accessories', 'watches_gift':'Gift Watch', 'furniture_decor':'Furniture Decor',  })
+
+# Round numeric columns
+df[['Freight Price', 'Unit Price', 'Lag Price', 'Revenue', 'Profit', 'Discount', 'Avg Comp Price', 'Price vs Comp', 'Freight Ratio']] = df[['Freight Price', 'Unit Price', 'Lag Price', 'Revenue', 'Profit', 'Discount', 'Avg Comp Price', 'Price vs Comp', 'Freight Ratio']].round(2)
+
+df.head
+
+# Round numeric columns
+df[['Freight Price', 'Unit Price', 'Lag Price', 'Revenue', 'Profit', 'Discount', 'Avg Comp Price', 'Price vs Comp', 'Freight Ratio']] = df[['Freight Price', 'Unit Price', 'Lag Price', 'Revenue', 'Profit', 'Discount', 'Avg Comp Price', 'Price vs Comp', 'Freight Ratio']].round(2)
+
+
+#save cleaned dataset
+df.to_csv("Retail.csv", index=False)
