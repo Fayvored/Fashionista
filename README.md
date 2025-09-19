@@ -1,4 +1,4 @@
-Executive Summary: Fashionista Price Optimization Case Study
+**Executive Summary:** Fashionista Price Optimization Case Study
 
 COMPANY: Fashionista — a clothing retailer with physical and online presence.
 OBJECTIVE: Use data-driven price optimization to maximize revenue, improve inventory management, and stay competitive.
