@@ -1,4 +1,6 @@
 <img width="600" height="401" alt="image" src="https://github.com/user-attachments/assets/38ce237b-c8cd-417b-ba7d-4b5cffb6970e" />
+
+
 **Executive Summary:** Fashionista Price Optimization Case Study
 
 **COMPANY:** Fashionista — a clothing retailer with physical and online presence.
