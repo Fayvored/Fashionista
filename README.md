@@ -39,3 +39,5 @@ Align inventory with forecasted seasonal demand to reduce stock risks.
 By integrating Python, SQL, and Power BI, Fashionista transformed raw sales data into actionable insights, achieving a clear roadmap for: Revenue growth, Operational efficiency, Stronger market competitiveness
 
 This case study demonstrates the power of data-driven pricing strategies in modern retail.
+
+[https://drive.google.com/file/d/1lrlAEPVtB4J-ZFAM_09K-UNPzTp9iXhj/view?usp=drive_link](url)
