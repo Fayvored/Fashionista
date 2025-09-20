@@ -41,4 +41,5 @@ By integrating Python, SQL, and Power BI, Fashionista transformed raw sales data
 This case study demonstrates the power of data-driven pricing strategies in modern retail.
 
 [Fashionista Dashboard](https://drive.google.com/file/d/16dKEXziAX402ld7B0dwAbZ8qRZJR2s9Q/view?usp=sharing)
+
 [Read Full Report Here](https://medium.com/p/f4a4f9eba884/edit)
